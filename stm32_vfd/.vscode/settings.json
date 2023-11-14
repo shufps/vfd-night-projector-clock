@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "stm32l0xx_hal_rtc.h": "c",
+        "*.tcc": "cpp",
+        "string": "cpp",
+        "string_view": "cpp"
+    }
+}

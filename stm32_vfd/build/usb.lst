@@ -1,0 +1,533 @@
+ARM GAS  /tmp/ccxohSGO.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"usb.cpp"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.USB_CDC_ReceiveCallback,"ax",%progbits
+  18              		.align	1
+  19              		.global	USB_CDC_ReceiveCallback
+  20              		.syntax unified
+  21              		.code	16
+  22              		.thumb_func
+  24              	USB_CDC_ReceiveCallback:
+  25              	.LVL0:
+  26              	.LFB42:
+  27              		.file 1 "Core/Src/usb.cpp"
+   1:Core/Src/usb.cpp **** #include "main.h"
+   2:Core/Src/usb.cpp **** #include "usb_device.h"
+   3:Core/Src/usb.cpp **** #include "json.h"
+   4:Core/Src/usb.cpp **** 
+   5:Core/Src/usb.cpp **** #define VIRTUAL_COM_PORT_DATA_SIZE 64
+   6:Core/Src/usb.cpp **** 
+   7:Core/Src/usb.cpp **** #define RXBUFSIZE 256
+   8:Core/Src/usb.cpp **** #define TXBUFSIZE 256
+   9:Core/Src/usb.cpp **** #define min(a, b) ((a < b) ? (a) : (b))
+  10:Core/Src/usb.cpp **** 
+  11:Core/Src/usb.cpp **** uint8_t rxbuf[RXBUFSIZE];
+  12:Core/Src/usb.cpp **** uint8_t txbuf[TXBUFSIZE];
+  13:Core/Src/usb.cpp **** uint32_t rxbufrdptr = 0;
+  14:Core/Src/usb.cpp **** uint32_t rxbufwrptr = 0;
+  15:Core/Src/usb.cpp **** char usbrxbuf[TXBUFSIZE];
+  16:Core/Src/usb.cpp **** char *usbwrptr = &usbrxbuf[0];
+  17:Core/Src/usb.cpp **** 
+  18:Core/Src/usb.cpp **** 
+  19:Core/Src/usb.cpp **** extern "C" void USB_CDC_ReceiveCallback(uint8_t *Receive_Buffer, uint32_t Receive_length) {
+  28              		.loc 1 19 91 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 19 91 is_stmt 0 view .LVU1
+  33 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 20
+  36              		.cfi_offset 4, -20
+  37              		.cfi_offset 5, -16
+  38              		.cfi_offset 6, -12
+  39              		.cfi_offset 7, -8
+ARM GAS  /tmp/ccxohSGO.s 			page 2
+
+
+  40              		.cfi_offset 14, -4
+  20:Core/Src/usb.cpp ****   for (uint32_t i = 0; i < Receive_length; i++) {
+  41              		.loc 1 20 3 is_stmt 1 view .LVU2
+  42              	.LVL1:
+  43              	.LBB2:
+  44              		.loc 1 20 17 is_stmt 0 view .LVU3
+  45 0002 0022     		movs	r2, #0
+  46 0004 09E0     		b	.L3
+  47              	.LVL2:
+  48              	.L4:
+  21:Core/Src/usb.cpp ****     rxbuf[rxbufwrptr % RXBUFSIZE] = Receive_Buffer[i];
+  49              		.loc 1 21 5 is_stmt 1 discriminator 2 view .LVU4
+  50              		.loc 1 21 22 is_stmt 0 discriminator 2 view .LVU5
+  51 0006 064D     		ldr	r5, .L5
+  52 0008 2B68     		ldr	r3, [r5]
+  53 000a FF24     		movs	r4, #255
+  54 000c 1C40     		ands	r4, r3
+  55              		.loc 1 21 53 discriminator 2 view .LVU6
+  56 000e 875C     		ldrb	r7, [r0, r2]
+  57              		.loc 1 21 35 discriminator 2 view .LVU7
+  58 0010 044E     		ldr	r6, .L5+4
+  59 0012 3755     		strb	r7, [r6, r4]
+  22:Core/Src/usb.cpp ****     rxbufwrptr++;
+  60              		.loc 1 22 5 is_stmt 1 discriminator 2 view .LVU8
+  61              		.loc 1 22 15 is_stmt 0 discriminator 2 view .LVU9
+  62 0014 0133     		adds	r3, r3, #1
+  63 0016 2B60     		str	r3, [r5]
+  20:Core/Src/usb.cpp ****   for (uint32_t i = 0; i < Receive_length; i++) {
+  64              		.loc 1 20 3 is_stmt 1 discriminator 2 view .LVU10
+  65 0018 0132     		adds	r2, r2, #1
+  66              	.LVL3:
+  67              	.L3:
+  20:Core/Src/usb.cpp ****   for (uint32_t i = 0; i < Receive_length; i++) {
+  68              		.loc 1 20 26 discriminator 3 view .LVU11
+  69 001a 8A42     		cmp	r2, r1
+  70 001c F3D3     		bcc	.L4
+  71              	.LBE2:
+  23:Core/Src/usb.cpp ****   }
+  24:Core/Src/usb.cpp **** }
+  72              		.loc 1 24 1 is_stmt 0 view .LVU12
+  73              		@ sp needed
+  74 001e F0BD     		pop	{r4, r5, r6, r7, pc}
+  75              	.L6:
+  76              		.align	2
+  77              	.L5:
+  78 0020 00000000 		.word	.LANCHOR0
+  79 0024 00000000 		.word	rxbuf
+  80              		.cfi_endproc
+  81              	.LFE42:
+  83              		.section	.text.USB_TransmitString,"ax",%progbits
+  84              		.align	1
+  85              		.global	USB_TransmitString
+  86              		.syntax unified
+  87              		.code	16
+  88              		.thumb_func
+  90              	USB_TransmitString:
+  91              	.LVL4:
+ARM GAS  /tmp/ccxohSGO.s 			page 3
+
+
+  92              	.LFB43:
+  25:Core/Src/usb.cpp **** 
+  26:Core/Src/usb.cpp **** extern "C" uint8_t CDC_Transmit_FS(uint8_t *Buf, uint16_t Len);
+  27:Core/Src/usb.cpp **** 
+  28:Core/Src/usb.cpp **** // TODO move to json and make it better
+  29:Core/Src/usb.cpp **** extern "C" void USB_TransmitString(const char *msg) {
+  93              		.loc 1 29 53 is_stmt 1 view -0
+  94              		.cfi_startproc
+  95              		@ args = 0, pretend = 0, frame = 0
+  96              		@ frame_needed = 0, uses_anonymous_args = 0
+  97              		.loc 1 29 53 is_stmt 0 view .LVU14
+  98 0000 70B5     		push	{r4, r5, r6, lr}
+  99              	.LCFI1:
+ 100              		.cfi_def_cfa_offset 16
+ 101              		.cfi_offset 4, -16
+ 102              		.cfi_offset 5, -12
+ 103              		.cfi_offset 6, -8
+ 104              		.cfi_offset 14, -4
+ 105 0002 0500     		movs	r5, r0
+  30:Core/Src/usb.cpp ****   uint32_t tosend = strlen(msg);
+ 106              		.loc 1 30 3 is_stmt 1 view .LVU15
+ 107              		.loc 1 30 27 is_stmt 0 view .LVU16
+ 108 0004 FFF7FEFF 		bl	strlen
+ 109              	.LVL5:
+ 110              		.loc 1 30 27 view .LVU17
+ 111 0008 0600     		movs	r6, r0
+ 112              	.LVL6:
+  31:Core/Src/usb.cpp ****   uint8_t *cptr = (uint8_t *)msg;
+ 113              		.loc 1 31 3 is_stmt 1 view .LVU18
+  32:Core/Src/usb.cpp ****   uint32_t maxsize = VIRTUAL_COM_PORT_DATA_SIZE - 1;
+ 114              		.loc 1 32 3 view .LVU19
+ 115              		.loc 1 32 3 is_stmt 0 view .LVU20
+ 116 000a 08E0     		b	.L11
+ 117              	.LVL7:
+ 118              	.L12:
+ 119              	.LBB3:
+  33:Core/Src/usb.cpp ****   while (tosend) {
+  34:Core/Src/usb.cpp ****     int chunklen = min(maxsize, tosend);
+ 120              		.loc 1 34 20 view .LVU21
+ 121 000c 3F24     		movs	r4, #63
+ 122              	.LVL8:
+ 123              	.L10:
+  35:Core/Src/usb.cpp ****     // if data not sent yet, it returns USBD_BUSY
+  36:Core/Src/usb.cpp ****     while (CDC_Transmit_FS(cptr, chunklen) == USBD_BUSY)
+ 124              		.loc 1 36 5 is_stmt 1 view .LVU22
+ 125              		.loc 1 36 44 view .LVU23
+ 126              		.loc 1 36 27 is_stmt 0 view .LVU24
+ 127 000e A1B2     		uxth	r1, r4
+ 128 0010 2800     		movs	r0, r5
+ 129 0012 FFF7FEFF 		bl	CDC_Transmit_FS
+ 130              	.LVL9:
+ 131              		.loc 1 36 44 view .LVU25
+ 132 0016 0128     		cmp	r0, #1
+ 133 0018 F9D0     		beq	.L10
+  37:Core/Src/usb.cpp ****       ;
+  38:Core/Src/usb.cpp ****     cptr += chunklen;
+ 134              		.loc 1 38 5 is_stmt 1 view .LVU26
+ARM GAS  /tmp/ccxohSGO.s 			page 4
+
+
+ 135              		.loc 1 38 10 is_stmt 0 view .LVU27
+ 136 001a 2D19     		adds	r5, r5, r4
+ 137              	.LVL10:
+  39:Core/Src/usb.cpp ****     tosend -= chunklen;
+ 138              		.loc 1 39 5 is_stmt 1 view .LVU28
+ 139              		.loc 1 39 12 is_stmt 0 view .LVU29
+ 140 001c 361B     		subs	r6, r6, r4
+ 141              	.LVL11:
+ 142              	.L11:
+ 143              		.loc 1 39 12 view .LVU30
+ 144              	.LBE3:
+  33:Core/Src/usb.cpp ****     int chunklen = min(maxsize, tosend);
+ 145              		.loc 1 33 3 is_stmt 1 view .LVU31
+  33:Core/Src/usb.cpp ****     int chunklen = min(maxsize, tosend);
+ 146              		.loc 1 33 10 view .LVU32
+ 147 001e 002E     		cmp	r6, #0
+ 148 0020 03D0     		beq	.L7
+ 149              	.LBB4:
+  34:Core/Src/usb.cpp ****     // if data not sent yet, it returns USBD_BUSY
+ 150              		.loc 1 34 5 view .LVU33
+  34:Core/Src/usb.cpp ****     // if data not sent yet, it returns USBD_BUSY
+ 151              		.loc 1 34 20 is_stmt 0 view .LVU34
+ 152 0022 3F2E     		cmp	r6, #63
+ 153 0024 F2D8     		bhi	.L12
+  34:Core/Src/usb.cpp ****     // if data not sent yet, it returns USBD_BUSY
+ 154              		.loc 1 34 20 discriminator 2 view .LVU35
+ 155 0026 3400     		movs	r4, r6
+ 156 0028 F1E7     		b	.L10
+ 157              	.L7:
+  34:Core/Src/usb.cpp ****     // if data not sent yet, it returns USBD_BUSY
+ 158              		.loc 1 34 20 discriminator 2 view .LVU36
+ 159              	.LBE4:
+  40:Core/Src/usb.cpp ****   }
+  41:Core/Src/usb.cpp **** }
+ 160              		.loc 1 41 1 view .LVU37
+ 161              		@ sp needed
+ 162              	.LVL12:
+ 163              	.LVL13:
+ 164              		.loc 1 41 1 view .LVU38
+ 165 002a 70BD     		pop	{r4, r5, r6, pc}
+ 166              		.cfi_endproc
+ 167              	.LFE43:
+ 169              		.section	.text._Z8parseCmdPc,"ax",%progbits
+ 170              		.align	1
+ 171              		.global	_Z8parseCmdPc
+ 172              		.syntax unified
+ 173              		.code	16
+ 174              		.thumb_func
+ 176              	_Z8parseCmdPc:
+ 177              	.LVL14:
+ 178              	.LFB44:
+  42:Core/Src/usb.cpp **** 
+  43:Core/Src/usb.cpp **** 
+  44:Core/Src/usb.cpp **** uint8_t parseCmd(char *rxbuf) { return process_json(rxbuf); }
+ 179              		.loc 1 44 31 is_stmt 1 view -0
+ 180              		.cfi_startproc
+ 181              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  /tmp/ccxohSGO.s 			page 5
+
+
+ 182              		@ frame_needed = 0, uses_anonymous_args = 0
+ 183              		.loc 1 44 31 is_stmt 0 view .LVU40
+ 184 0000 10B5     		push	{r4, lr}
+ 185              	.LCFI2:
+ 186              		.cfi_def_cfa_offset 8
+ 187              		.cfi_offset 4, -8
+ 188              		.cfi_offset 14, -4
+ 189              		.loc 1 44 33 is_stmt 1 view .LVU41
+ 190              		.loc 1 44 52 is_stmt 0 view .LVU42
+ 191 0002 FFF7FEFF 		bl	_Z12process_jsonPc
+ 192              	.LVL15:
+ 193              		.loc 1 44 61 view .LVU43
+ 194              		@ sp needed
+ 195 0006 10BD     		pop	{r4, pc}
+ 196              		.cfi_endproc
+ 197              	.LFE44:
+ 199              		.section	.rodata._Z8usb_loopv.str1.4,"aMS",%progbits,1
+ 200              		.align	2
+ 201              	.LC7:
+ 202 0000 6572726F 		.ascii	"error\000"
+ 202      7200
+ 203              		.section	.text._Z8usb_loopv,"ax",%progbits
+ 204              		.align	1
+ 205              		.global	_Z8usb_loopv
+ 206              		.syntax unified
+ 207              		.code	16
+ 208              		.thumb_func
+ 210              	_Z8usb_loopv:
+ 211              	.LFB45:
+  45:Core/Src/usb.cpp **** 
+  46:Core/Src/usb.cpp **** void usb_loop() {
+ 212              		.loc 1 46 17 is_stmt 1 view -0
+ 213              		.cfi_startproc
+ 214              		@ args = 0, pretend = 0, frame = 0
+ 215              		@ frame_needed = 0, uses_anonymous_args = 0
+ 216 0000 10B5     		push	{r4, lr}
+ 217              	.LCFI3:
+ 218              		.cfi_def_cfa_offset 8
+ 219              		.cfi_offset 4, -8
+ 220              		.cfi_offset 14, -4
+ 221 0002 0DE0     		b	.L19
+ 222              	.L21:
+  47:Core/Src/usb.cpp ****   for (; rxbufrdptr < rxbufwrptr; rxbufrdptr++) {
+  48:Core/Src/usb.cpp ****     *usbwrptr = rxbuf[rxbufrdptr % RXBUFSIZE];
+  49:Core/Src/usb.cpp ****     if (*usbwrptr == '\n')
+  50:Core/Src/usb.cpp ****       continue;
+  51:Core/Src/usb.cpp ****     if (*usbwrptr == '\r') {
+  52:Core/Src/usb.cpp ****       *usbwrptr = 0;
+ 223              		.loc 1 52 7 view .LVU45
+ 224              		.loc 1 52 17 is_stmt 0 view .LVU46
+ 225 0004 0022     		movs	r2, #0
+ 226 0006 1A70     		strb	r2, [r3]
+  53:Core/Src/usb.cpp ****       if (!parseCmd(usbrxbuf))
+ 227              		.loc 1 53 7 is_stmt 1 view .LVU47
+ 228              		.loc 1 53 20 is_stmt 0 view .LVU48
+ 229 0008 1B48     		ldr	r0, .L22
+ 230 000a FFF7FEFF 		bl	_Z8parseCmdPc
+ARM GAS  /tmp/ccxohSGO.s 			page 6
+
+
+ 231              	.LVL16:
+ 232              		.loc 1 53 7 view .LVU49
+ 233 000e 0028     		cmp	r0, #0
+ 234 0010 2DD0     		beq	.L20
+ 235              	.L18:
+  54:Core/Src/usb.cpp ****         USB_TransmitString("error");
+  55:Core/Src/usb.cpp ****       usbwrptr = &usbrxbuf[0];
+ 236              		.loc 1 55 7 is_stmt 1 view .LVU50
+ 237              		.loc 1 55 16 is_stmt 0 view .LVU51
+ 238 0012 1A4B     		ldr	r3, .L22+4
+ 239 0014 184A     		ldr	r2, .L22
+ 240 0016 1A60     		str	r2, [r3]
+ 241              	.L16:
+  47:Core/Src/usb.cpp ****     *usbwrptr = rxbuf[rxbufrdptr % RXBUFSIZE];
+ 242              		.loc 1 47 3 is_stmt 1 view .LVU52
+ 243 0018 194A     		ldr	r2, .L22+8
+ 244 001a 1368     		ldr	r3, [r2]
+ 245 001c 0133     		adds	r3, r3, #1
+ 246 001e 1360     		str	r3, [r2]
+ 247              	.L19:
+  47:Core/Src/usb.cpp ****     *usbwrptr = rxbuf[rxbufrdptr % RXBUFSIZE];
+ 248              		.loc 1 47 3 discriminator 1 view .LVU53
+  47:Core/Src/usb.cpp ****     *usbwrptr = rxbuf[rxbufrdptr % RXBUFSIZE];
+ 249              		.loc 1 47 21 discriminator 1 view .LVU54
+ 250 0020 174B     		ldr	r3, .L22+8
+ 251 0022 1A68     		ldr	r2, [r3]
+ 252 0024 174B     		ldr	r3, .L22+12
+ 253 0026 1B68     		ldr	r3, [r3]
+ 254 0028 9A42     		cmp	r2, r3
+ 255 002a 24D2     		bcs	.L14
+  48:Core/Src/usb.cpp ****     if (*usbwrptr == '\n')
+ 256              		.loc 1 48 5 view .LVU55
+  48:Core/Src/usb.cpp ****     if (*usbwrptr == '\n')
+ 257              		.loc 1 48 34 is_stmt 0 view .LVU56
+ 258 002c FF23     		movs	r3, #255
+ 259 002e 1340     		ands	r3, r2
+  48:Core/Src/usb.cpp ****     if (*usbwrptr == '\n')
+ 260              		.loc 1 48 5 view .LVU57
+ 261 0030 124A     		ldr	r2, .L22+4
+  48:Core/Src/usb.cpp ****     if (*usbwrptr == '\n')
+ 262              		.loc 1 48 45 view .LVU58
+ 263 0032 1549     		ldr	r1, .L22+16
+ 264 0034 CB5C     		ldrb	r3, [r1, r3]
+  48:Core/Src/usb.cpp ****     if (*usbwrptr == '\n')
+ 265              		.loc 1 48 15 view .LVU59
+ 266 0036 1168     		ldr	r1, [r2]
+ 267 0038 0B70     		strb	r3, [r1]
+  49:Core/Src/usb.cpp ****       continue;
+ 268              		.loc 1 49 5 is_stmt 1 view .LVU60
+  49:Core/Src/usb.cpp ****       continue;
+ 269              		.loc 1 49 9 is_stmt 0 view .LVU61
+ 270 003a 1368     		ldr	r3, [r2]
+ 271 003c 1A78     		ldrb	r2, [r3]
+  49:Core/Src/usb.cpp ****       continue;
+ 272              		.loc 1 49 5 view .LVU62
+ 273 003e 0A2A     		cmp	r2, #10
+ 274 0040 EAD0     		beq	.L16
+ARM GAS  /tmp/ccxohSGO.s 			page 7
+
+
+  51:Core/Src/usb.cpp ****       *usbwrptr = 0;
+ 275              		.loc 1 51 5 is_stmt 1 view .LVU63
+ 276 0042 0D2A     		cmp	r2, #13
+ 277 0044 DED0     		beq	.L21
+  56:Core/Src/usb.cpp ****     } else {
+  57:Core/Src/usb.cpp ****       usbwrptr++;
+ 278              		.loc 1 57 7 view .LVU64
+ 279              		.loc 1 57 15 is_stmt 0 view .LVU65
+ 280 0046 0133     		adds	r3, r3, #1
+ 281 0048 0C4A     		ldr	r2, .L22+4
+ 282 004a 1360     		str	r3, [r2]
+  58:Core/Src/usb.cpp ****       if ((int)usbwrptr - (int)&usbrxbuf > (int)sizeof(usbrxbuf) - 2) {
+ 283              		.loc 1 58 7 is_stmt 1 view .LVU66
+ 284              		.loc 1 58 25 is_stmt 0 view .LVU67
+ 285 004c 0A4A     		ldr	r2, .L22
+ 286 004e 9B1A     		subs	r3, r3, r2
+ 287              		.loc 1 58 7 view .LVU68
+ 288 0050 FE2B     		cmp	r3, #254
+ 289 0052 E1DD     		ble	.L16
+  59:Core/Src/usb.cpp ****         memset(usbrxbuf, 0, sizeof(usbrxbuf));
+ 290              		.loc 1 59 9 is_stmt 1 view .LVU69
+ 291              		.loc 1 59 15 is_stmt 0 view .LVU70
+ 292 0054 1400     		movs	r4, r2
+ 293 0056 8022     		movs	r2, #128
+ 294 0058 5200     		lsls	r2, r2, #1
+ 295 005a 0021     		movs	r1, #0
+ 296 005c 2000     		movs	r0, r4
+ 297 005e FFF7FEFF 		bl	memset
+ 298              	.LVL17:
+  60:Core/Src/usb.cpp ****         usbwrptr = &usbrxbuf[0];
+ 299              		.loc 1 60 9 is_stmt 1 view .LVU71
+ 300              		.loc 1 60 18 is_stmt 0 view .LVU72
+ 301 0062 064B     		ldr	r3, .L22+4
+ 302 0064 1C60     		str	r4, [r3]
+  61:Core/Src/usb.cpp ****         USB_TransmitString("error");
+ 303              		.loc 1 61 9 is_stmt 1 view .LVU73
+ 304              		.loc 1 61 27 is_stmt 0 view .LVU74
+ 305 0066 0948     		ldr	r0, .L22+20
+ 306 0068 FFF7FEFF 		bl	USB_TransmitString
+ 307              	.LVL18:
+ 308 006c D4E7     		b	.L16
+ 309              	.L20:
+  54:Core/Src/usb.cpp ****       usbwrptr = &usbrxbuf[0];
+ 310              		.loc 1 54 9 is_stmt 1 view .LVU75
+  54:Core/Src/usb.cpp ****       usbwrptr = &usbrxbuf[0];
+ 311              		.loc 1 54 27 is_stmt 0 view .LVU76
+ 312 006e 0748     		ldr	r0, .L22+20
+ 313 0070 FFF7FEFF 		bl	USB_TransmitString
+ 314              	.LVL19:
+ 315 0074 CDE7     		b	.L18
+ 316              	.L14:
+  62:Core/Src/usb.cpp ****       }
+  63:Core/Src/usb.cpp ****     }
+  64:Core/Src/usb.cpp ****   }
+  65:Core/Src/usb.cpp **** }...
+ 317              		.loc 1 65 1 view .LVU77
+ 318              		@ sp needed
+ARM GAS  /tmp/ccxohSGO.s 			page 8
+
+
+ 319 0076 10BD     		pop	{r4, pc}
+ 320              	.L23:
+ 321              		.align	2
+ 322              	.L22:
+ 323 0078 00000000 		.word	usbrxbuf
+ 324 007c 00000000 		.word	.LANCHOR2
+ 325 0080 00000000 		.word	.LANCHOR1
+ 326 0084 00000000 		.word	.LANCHOR0
+ 327 0088 00000000 		.word	rxbuf
+ 328 008c 00000000 		.word	.LC7
+ 329              		.cfi_endproc
+ 330              	.LFE45:
+ 332              		.global	usbwrptr
+ 333              		.global	usbrxbuf
+ 334              		.global	rxbufwrptr
+ 335              		.global	rxbufrdptr
+ 336              		.global	txbuf
+ 337              		.global	rxbuf
+ 338              		.section	.bss.rxbuf,"aw",%nobits
+ 339              		.align	2
+ 342              	rxbuf:
+ 343 0000 00000000 		.space	256
+ 343      00000000 
+ 343      00000000 
+ 343      00000000 
+ 343      00000000 
+ 344              		.section	.bss.rxbufrdptr,"aw",%nobits
+ 345              		.align	2
+ 346              		.set	.LANCHOR1,. + 0
+ 349              	rxbufrdptr:
+ 350 0000 00000000 		.space	4
+ 351              		.section	.bss.rxbufwrptr,"aw",%nobits
+ 352              		.align	2
+ 353              		.set	.LANCHOR0,. + 0
+ 356              	rxbufwrptr:
+ 357 0000 00000000 		.space	4
+ 358              		.section	.bss.txbuf,"aw",%nobits
+ 359              		.align	2
+ 362              	txbuf:
+ 363 0000 00000000 		.space	256
+ 363      00000000 
+ 363      00000000 
+ 363      00000000 
+ 363      00000000 
+ 364              		.section	.bss.usbrxbuf,"aw",%nobits
+ 365              		.align	2
+ 368              	usbrxbuf:
+ 369 0000 00000000 		.space	256
+ 369      00000000 
+ 369      00000000 
+ 369      00000000 
+ 369      00000000 
+ 370              		.section	.data.usbwrptr,"aw"
+ 371              		.align	2
+ 372              		.set	.LANCHOR2,. + 0
+ 375              	usbwrptr:
+ 376 0000 00000000 		.word	usbrxbuf
+ARM GAS  /tmp/ccxohSGO.s 			page 9
+
+
+ 377              		.text
+ 378              	.Letext0:
+ 379              		.file 2 "/home/thomas/programme/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_defa
+ 380              		.file 3 "/home/thomas/programme/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h
+ 381              		.file 4 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l0xx.h"
+ 382              		.file 5 "/home/thomas/programme/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/includ
+ 383              		.file 6 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h"
+ 384              		.file 7 "/home/thomas/programme/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/c++/10.3.1/cs
+ 385              		.file 8 "/home/thomas/programme/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/c++/10.3.1/bi
+ 386              		.file 9 "/home/thomas/programme/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/c++/10.3.1/ar
+ 387              		.file 10 "/home/thomas/programme/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdlib.h"
+ 388              		.file 11 "/home/thomas/programme/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/c++/10.3.1/s
+ 389              		.file 12 "Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h"
+ 390              		.file 13 "Core/Inc/json.h"
+ 391              		.file 14 "/home/thomas/programme/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/string.h"
+ 392              		.file 15 "<built-in>"
+ARM GAS  /tmp/ccxohSGO.s 			page 10
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 usb.cpp
+     /tmp/ccxohSGO.s:18     .text.USB_CDC_ReceiveCallback:0000000000000000 $t
+     /tmp/ccxohSGO.s:24     .text.USB_CDC_ReceiveCallback:0000000000000000 USB_CDC_ReceiveCallback
+     /tmp/ccxohSGO.s:78     .text.USB_CDC_ReceiveCallback:0000000000000020 $d
+     /tmp/ccxohSGO.s:342    .bss.rxbuf:0000000000000000 rxbuf
+     /tmp/ccxohSGO.s:84     .text.USB_TransmitString:0000000000000000 $t
+     /tmp/ccxohSGO.s:90     .text.USB_TransmitString:0000000000000000 USB_TransmitString
+     /tmp/ccxohSGO.s:170    .text._Z8parseCmdPc:0000000000000000 $t
+     /tmp/ccxohSGO.s:176    .text._Z8parseCmdPc:0000000000000000 _Z8parseCmdPc
+     /tmp/ccxohSGO.s:200    .rodata._Z8usb_loopv.str1.4:0000000000000000 $d
+     /tmp/ccxohSGO.s:204    .text._Z8usb_loopv:0000000000000000 $t
+     /tmp/ccxohSGO.s:210    .text._Z8usb_loopv:0000000000000000 _Z8usb_loopv
+     /tmp/ccxohSGO.s:323    .text._Z8usb_loopv:0000000000000078 $d
+     /tmp/ccxohSGO.s:368    .bss.usbrxbuf:0000000000000000 usbrxbuf
+     /tmp/ccxohSGO.s:375    .data.usbwrptr:0000000000000000 usbwrptr
+     /tmp/ccxohSGO.s:356    .bss.rxbufwrptr:0000000000000000 rxbufwrptr
+     /tmp/ccxohSGO.s:349    .bss.rxbufrdptr:0000000000000000 rxbufrdptr
+     /tmp/ccxohSGO.s:362    .bss.txbuf:0000000000000000 txbuf
+     /tmp/ccxohSGO.s:339    .bss.rxbuf:0000000000000000 $d
+     /tmp/ccxohSGO.s:345    .bss.rxbufrdptr:0000000000000000 $d
+     /tmp/ccxohSGO.s:352    .bss.rxbufwrptr:0000000000000000 $d
+     /tmp/ccxohSGO.s:359    .bss.txbuf:0000000000000000 $d
+     /tmp/ccxohSGO.s:365    .bss.usbrxbuf:0000000000000000 $d
+     /tmp/ccxohSGO.s:371    .data.usbwrptr:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+strlen
+CDC_Transmit_FS
+_Z12process_jsonPc
+memset

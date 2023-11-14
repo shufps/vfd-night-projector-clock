@@ -1,0 +1,367 @@
+ARM GAS  /tmp/ccahnscO.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"rtc.cpp"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text._Z8init_rtcv,"ax",%progbits
+  18              		.align	1
+  19              		.global	_Z8init_rtcv
+  20              		.syntax unified
+  21              		.code	16
+  22              		.thumb_func
+  24              	_Z8init_rtcv:
+  25              	.LFB34:
+  26              		.file 1 "Core/Src/rtc.cpp"
+   1:Core/Src/rtc.cpp **** #include "main.h"
+   2:Core/Src/rtc.cpp **** 
+   3:Core/Src/rtc.cpp **** #include "rtc.h"
+   4:Core/Src/rtc.cpp **** 
+   5:Core/Src/rtc.cpp **** extern RTC_HandleTypeDef hrtc;
+   6:Core/Src/rtc.cpp **** 
+   7:Core/Src/rtc.cpp **** uint8_t init_rtc() {
+  27              		.loc 1 7 20 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 24
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 00B5     		push	{lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 4
+  34              		.cfi_offset 14, -4
+  35 0002 87B0     		sub	sp, sp, #28
+  36              	.LCFI1:
+  37              		.cfi_def_cfa_offset 32
+   8:Core/Src/rtc.cpp ****   RTC_DateTypeDef sdatestructure;
+  38              		.loc 1 8 3 view .LVU1
+   9:Core/Src/rtc.cpp ****   RTC_TimeTypeDef stimestructure;
+  39              		.loc 1 9 3 view .LVU2
+  10:Core/Src/rtc.cpp **** 
+  11:Core/Src/rtc.cpp ****   sdatestructure.Year = 0x14;
+  40              		.loc 1 11 3 view .LVU3
+  41              		.loc 1 11 23 is_stmt 0 view .LVU4
+  42 0004 05A9     		add	r1, sp, #20
+  43 0006 1423     		movs	r3, #20
+  44 0008 CB70     		strb	r3, [r1, #3]
+  12:Core/Src/rtc.cpp ****   sdatestructure.Month = RTC_MONTH_APRIL;
+  45              		.loc 1 12 3 is_stmt 1 view .LVU5
+  46              		.loc 1 12 24 is_stmt 0 view .LVU6
+ARM GAS  /tmp/ccahnscO.s 			page 2
+
+
+  47 000a 0422     		movs	r2, #4
+  48 000c 4A70     		strb	r2, [r1, #1]
+  13:Core/Src/rtc.cpp ****   sdatestructure.Date = 0x14;
+  49              		.loc 1 13 3 is_stmt 1 view .LVU7
+  50              		.loc 1 13 23 is_stmt 0 view .LVU8
+  51 000e 8B70     		strb	r3, [r1, #2]
+  14:Core/Src/rtc.cpp ****   sdatestructure.WeekDay = RTC_WEEKDAY_MONDAY;
+  52              		.loc 1 14 3 is_stmt 1 view .LVU9
+  53              		.loc 1 14 26 is_stmt 0 view .LVU10
+  54 0010 133B     		subs	r3, r3, #19
+  55 0012 0B70     		strb	r3, [r1]
+  15:Core/Src/rtc.cpp **** 
+  16:Core/Src/rtc.cpp ****   if (HAL_RTC_SetDate(&hrtc, &sdatestructure, RTC_FORMAT_BIN) != HAL_OK) {
+  56              		.loc 1 16 3 is_stmt 1 view .LVU11
+  57              		.loc 1 16 22 is_stmt 0 view .LVU12
+  58 0014 0022     		movs	r2, #0
+  59 0016 0F48     		ldr	r0, .L6
+  60 0018 FFF7FEFF 		bl	HAL_RTC_SetDate
+  61              	.LVL0:
+  62              		.loc 1 16 3 view .LVU13
+  63 001c 0028     		cmp	r0, #0
+  64 001e 13D1     		bne	.L4
+  65              	.L2:
+  17:Core/Src/rtc.cpp ****     /* Initialization Error */
+  18:Core/Src/rtc.cpp ****     Error_Handler();
+  19:Core/Src/rtc.cpp ****   }
+  20:Core/Src/rtc.cpp **** 
+  21:Core/Src/rtc.cpp ****   stimestructure.Hours = 0x08;
+  66              		.loc 1 21 3 is_stmt 1 view .LVU14
+  67              		.loc 1 21 24 is_stmt 0 view .LVU15
+  68 0020 0823     		movs	r3, #8
+  69 0022 6A46     		mov	r2, sp
+  70 0024 1370     		strb	r3, [r2]
+  22:Core/Src/rtc.cpp ****   stimestructure.Minutes = 0x10;
+  71              		.loc 1 22 3 is_stmt 1 view .LVU16
+  72              		.loc 1 22 26 is_stmt 0 view .LVU17
+  73 0026 0833     		adds	r3, r3, #8
+  74 0028 5370     		strb	r3, [r2, #1]
+  23:Core/Src/rtc.cpp ****   stimestructure.Seconds = 0x00;
+  75              		.loc 1 23 3 is_stmt 1 view .LVU18
+  76              		.loc 1 23 26 is_stmt 0 view .LVU19
+  77 002a 0023     		movs	r3, #0
+  78 002c 9370     		strb	r3, [r2, #2]
+  24:Core/Src/rtc.cpp ****   stimestructure.TimeFormat = RTC_HOURFORMAT12_AM;
+  79              		.loc 1 24 3 is_stmt 1 view .LVU20
+  80              		.loc 1 24 29 is_stmt 0 view .LVU21
+  81 002e D370     		strb	r3, [r2, #3]
+  25:Core/Src/rtc.cpp ****   stimestructure.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+  82              		.loc 1 25 3 is_stmt 1 view .LVU22
+  83              		.loc 1 25 33 is_stmt 0 view .LVU23
+  84 0030 0393     		str	r3, [sp, #12]
+  26:Core/Src/rtc.cpp ****   stimestructure.StoreOperation = RTC_STOREOPERATION_RESET;
+  85              		.loc 1 26 3 is_stmt 1 view .LVU24
+  86              		.loc 1 26 33 is_stmt 0 view .LVU25
+  87 0032 0493     		str	r3, [sp, #16]
+  27:Core/Src/rtc.cpp **** 
+  28:Core/Src/rtc.cpp ****   if (HAL_RTC_SetTime(&hrtc, &stimestructure, RTC_FORMAT_BIN) != HAL_OK) {
+ARM GAS  /tmp/ccahnscO.s 			page 3
+
+
+  88              		.loc 1 28 3 is_stmt 1 view .LVU26
+  89              		.loc 1 28 22 is_stmt 0 view .LVU27
+  90 0034 0022     		movs	r2, #0
+  91 0036 6946     		mov	r1, sp
+  92 0038 0648     		ldr	r0, .L6
+  93 003a FFF7FEFF 		bl	HAL_RTC_SetTime
+  94              	.LVL1:
+  95              		.loc 1 28 3 view .LVU28
+  96 003e 0028     		cmp	r0, #0
+  97 0040 05D1     		bne	.L5
+  98              	.L3:
+  29:Core/Src/rtc.cpp ****     /* Initialization Error */
+  30:Core/Src/rtc.cpp ****     Error_Handler();
+  31:Core/Src/rtc.cpp ****   }
+  32:Core/Src/rtc.cpp **** 
+  33:Core/Src/rtc.cpp ****   return 1;
+  99              		.loc 1 33 3 is_stmt 1 view .LVU29
+  34:Core/Src/rtc.cpp **** }
+ 100              		.loc 1 34 1 is_stmt 0 view .LVU30
+ 101 0042 0120     		movs	r0, #1
+ 102 0044 07B0     		add	sp, sp, #28
+ 103              		@ sp needed
+ 104 0046 00BD     		pop	{pc}
+ 105              	.L4:
+  18:Core/Src/rtc.cpp ****   }
+ 106              		.loc 1 18 5 is_stmt 1 view .LVU31
+  18:Core/Src/rtc.cpp ****   }
+ 107              		.loc 1 18 18 is_stmt 0 view .LVU32
+ 108 0048 FFF7FEFF 		bl	Error_Handler
+ 109              	.LVL2:
+ 110 004c E8E7     		b	.L2
+ 111              	.L5:
+  30:Core/Src/rtc.cpp ****   }
+ 112              		.loc 1 30 5 is_stmt 1 view .LVU33
+  30:Core/Src/rtc.cpp ****   }
+ 113              		.loc 1 30 18 is_stmt 0 view .LVU34
+ 114 004e FFF7FEFF 		bl	Error_Handler
+ 115              	.LVL3:
+ 116 0052 F6E7     		b	.L3
+ 117              	.L7:
+ 118              		.align	2
+ 119              	.L6:
+ 120 0054 00000000 		.word	hrtc
+ 121              		.cfi_endproc
+ 122              	.LFE34:
+ 124              		.section	.text._Z7get_rtcP15RTC_DateTypeDefP15RTC_TimeTypeDef,"ax",%progbits
+ 125              		.align	1
+ 126              		.global	_Z7get_rtcP15RTC_DateTypeDefP15RTC_TimeTypeDef
+ 127              		.syntax unified
+ 128              		.code	16
+ 129              		.thumb_func
+ 131              	_Z7get_rtcP15RTC_DateTypeDefP15RTC_TimeTypeDef:
+ 132              	.LVL4:
+ 133              	.LFB35:
+  35:Core/Src/rtc.cpp **** 
+  36:Core/Src/rtc.cpp **** void get_rtc(RTC_DateTypeDef *sdatestructureget,
+  37:Core/Src/rtc.cpp ****              RTC_TimeTypeDef *stimestructureget) {
+ARM GAS  /tmp/ccahnscO.s 			page 4
+
+
+ 134              		.loc 1 37 50 is_stmt 1 view -0
+ 135              		.cfi_startproc
+ 136              		@ args = 0, pretend = 0, frame = 0
+ 137              		@ frame_needed = 0, uses_anonymous_args = 0
+ 138              		.loc 1 37 50 is_stmt 0 view .LVU36
+ 139 0000 70B5     		push	{r4, r5, r6, lr}
+ 140              	.LCFI2:
+ 141              		.cfi_def_cfa_offset 16
+ 142              		.cfi_offset 4, -16
+ 143              		.cfi_offset 5, -12
+ 144              		.cfi_offset 6, -8
+ 145              		.cfi_offset 14, -4
+ 146 0002 0400     		movs	r4, r0
+  38:Core/Src/rtc.cpp **** 
+  39:Core/Src/rtc.cpp ****   /* Get the RTC current Time */
+  40:Core/Src/rtc.cpp ****   HAL_RTC_GetTime(&hrtc, stimestructureget, RTC_FORMAT_BIN);
+ 147              		.loc 1 40 3 is_stmt 1 view .LVU37
+ 148              		.loc 1 40 18 is_stmt 0 view .LVU38
+ 149 0004 054D     		ldr	r5, .L9
+ 150 0006 0022     		movs	r2, #0
+ 151 0008 2800     		movs	r0, r5
+ 152              	.LVL5:
+ 153              		.loc 1 40 18 view .LVU39
+ 154 000a FFF7FEFF 		bl	HAL_RTC_GetTime
+ 155              	.LVL6:
+  41:Core/Src/rtc.cpp ****   /* Get the RTC current Date */
+  42:Core/Src/rtc.cpp ****   HAL_RTC_GetDate(&hrtc, sdatestructureget, RTC_FORMAT_BIN);
+ 156              		.loc 1 42 3 is_stmt 1 view .LVU40
+ 157              		.loc 1 42 18 is_stmt 0 view .LVU41
+ 158 000e 0022     		movs	r2, #0
+ 159 0010 2100     		movs	r1, r4
+ 160 0012 2800     		movs	r0, r5
+ 161 0014 FFF7FEFF 		bl	HAL_RTC_GetDate
+ 162              	.LVL7:
+  43:Core/Src/rtc.cpp **** #if 0
+  44:Core/Src/rtc.cpp **** #ifdef DISPLAY_ON_DUBUGGER
+  45:Core/Src/rtc.cpp ****   /* Display time Format : hh:mm:ss */
+  46:Core/Src/rtc.cpp ****   sprintf((char*)aShowTime,"%.2d:%.2d:%.2d", stimestructureget.Hours, stimestructureget.Minutes, st
+  47:Core/Src/rtc.cpp ****   /* Display date Format : mm-dd-yy */
+  48:Core/Src/rtc.cpp ****   sprintf((char*)aShowDate,"%.2d-%.2d-%.2d", sdatestructureget.Month, sdatestructureget.Date, 2000 
+  49:Core/Src/rtc.cpp **** #endif
+  50:Core/Src/rtc.cpp **** #endif
+  51:Core/Src/rtc.cpp **** }
+ 163              		.loc 1 51 1 view .LVU42
+ 164              		@ sp needed
+ 165              	.LVL8:
+ 166              		.loc 1 51 1 view .LVU43
+ 167 0018 70BD     		pop	{r4, r5, r6, pc}
+ 168              	.L10:
+ 169 001a C046     		.align	2
+ 170              	.L9:
+ 171 001c 00000000 		.word	hrtc
+ 172              		.cfi_endproc
+ 173              	.LFE35:
+ 175              		.section	.text._Z7set_rtcP15RTC_DateTypeDefP15RTC_TimeTypeDef,"ax",%progbits
+ 176              		.align	1
+ 177              		.global	_Z7set_rtcP15RTC_DateTypeDefP15RTC_TimeTypeDef
+ARM GAS  /tmp/ccahnscO.s 			page 5
+
+
+ 178              		.syntax unified
+ 179              		.code	16
+ 180              		.thumb_func
+ 182              	_Z7set_rtcP15RTC_DateTypeDefP15RTC_TimeTypeDef:
+ 183              	.LVL9:
+ 184              	.LFB36:
+  52:Core/Src/rtc.cpp **** 
+  53:Core/Src/rtc.cpp **** uint8_t set_rtc(RTC_DateTypeDef *sdatestructure,
+  54:Core/Src/rtc.cpp ****                 RTC_TimeTypeDef *stimestructure) {
+ 185              		.loc 1 54 50 is_stmt 1 view -0
+ 186              		.cfi_startproc
+ 187              		@ args = 0, pretend = 0, frame = 0
+ 188              		@ frame_needed = 0, uses_anonymous_args = 0
+ 189              		.loc 1 54 50 is_stmt 0 view .LVU45
+ 190 0000 70B5     		push	{r4, r5, r6, lr}
+ 191              	.LCFI3:
+ 192              		.cfi_def_cfa_offset 16
+ 193              		.cfi_offset 4, -16
+ 194              		.cfi_offset 5, -12
+ 195              		.cfi_offset 6, -8
+ 196              		.cfi_offset 14, -4
+ 197 0002 0300     		movs	r3, r0
+ 198 0004 0D00     		movs	r5, r1
+  55:Core/Src/rtc.cpp **** 
+  56:Core/Src/rtc.cpp ****   __HAL_RTC_WRITEPROTECTION_DISABLE(&hrtc);
+ 199              		.loc 1 56 3 is_stmt 1 view .LVU46
+ 200              		.loc 1 56 3 view .LVU47
+ 201 0006 0C48     		ldr	r0, .L15
+ 202              	.LVL10:
+ 203              		.loc 1 56 3 is_stmt 0 view .LVU48
+ 204 0008 0268     		ldr	r2, [r0]
+ 205 000a CA21     		movs	r1, #202
+ 206              	.LVL11:
+ 207              		.loc 1 56 3 view .LVU49
+ 208 000c 5162     		str	r1, [r2, #36]
+ 209              		.loc 1 56 3 is_stmt 1 view .LVU50
+ 210 000e 7739     		subs	r1, r1, #119
+ 211 0010 5162     		str	r1, [r2, #36]
+  57:Core/Src/rtc.cpp ****   if (HAL_RTC_SetDate(&hrtc, sdatestructure, RTC_FORMAT_BIN) != HAL_OK) {
+ 212              		.loc 1 57 3 view .LVU51
+ 213              		.loc 1 57 22 is_stmt 0 view .LVU52
+ 214 0012 0022     		movs	r2, #0
+ 215 0014 1900     		movs	r1, r3
+ 216 0016 FFF7FEFF 		bl	HAL_RTC_SetDate
+ 217              	.LVL12:
+ 218              		.loc 1 57 22 view .LVU53
+ 219 001a 041E     		subs	r4, r0, #0
+ 220              		.loc 1 57 3 view .LVU54
+ 221 001c 02D0     		beq	.L14
+  58:Core/Src/rtc.cpp ****     return 0;
+ 222              		.loc 1 58 12 view .LVU55
+ 223 001e 0024     		movs	r4, #0
+ 224              	.L12:
+  59:Core/Src/rtc.cpp ****   }
+  60:Core/Src/rtc.cpp **** 
+  61:Core/Src/rtc.cpp ****   if (HAL_RTC_SetTime(&hrtc, stimestructure, RTC_FORMAT_BIN) != HAL_OK) {
+  62:Core/Src/rtc.cpp ****     return 0;
+ARM GAS  /tmp/ccahnscO.s 			page 6
+
+
+  63:Core/Src/rtc.cpp ****   }
+  64:Core/Src/rtc.cpp ****   return 1;
+  65:Core/Src/rtc.cpp **** }
+ 225              		.loc 1 65 1 view .LVU56
+ 226 0020 2000     		movs	r0, r4
+ 227              		@ sp needed
+ 228              	.LVL13:
+ 229              		.loc 1 65 1 view .LVU57
+ 230 0022 70BD     		pop	{r4, r5, r6, pc}
+ 231              	.LVL14:
+ 232              	.L14:
+  61:Core/Src/rtc.cpp ****     return 0;
+ 233              		.loc 1 61 3 is_stmt 1 view .LVU58
+  61:Core/Src/rtc.cpp ****     return 0;
+ 234              		.loc 1 61 22 is_stmt 0 view .LVU59
+ 235 0024 0022     		movs	r2, #0
+ 236 0026 2900     		movs	r1, r5
+ 237 0028 0348     		ldr	r0, .L15
+ 238 002a FFF7FEFF 		bl	HAL_RTC_SetTime
+ 239              	.LVL15:
+  61:Core/Src/rtc.cpp ****     return 0;
+ 240              		.loc 1 61 3 view .LVU60
+ 241 002e 0028     		cmp	r0, #0
+ 242 0030 F6D1     		bne	.L12
+  64:Core/Src/rtc.cpp **** }
+ 243              		.loc 1 64 10 view .LVU61
+ 244 0032 0134     		adds	r4, r4, #1
+ 245 0034 F4E7     		b	.L12
+ 246              	.L16:
+ 247 0036 C046     		.align	2
+ 248              	.L15:
+ 249 0038 00000000 		.word	hrtc
+ 250              		.cfi_endproc
+ 251              	.LFE36:
+ 253              		.text
+ 254              	.Letext0:
+ 255              		.file 2 "/home/thomas/programme/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_defa
+ 256              		.file 3 "/home/thomas/programme/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h
+ 257              		.file 4 "Drivers/CMSIS/Device/ST/STM32L0xx/Include/stm32l052xx.h"
+ 258              		.file 5 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_def.h"
+ 259              		.file 6 "Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_rtc.h"
+ 260              		.file 7 "Core/Inc/main.h"
+ARM GAS  /tmp/ccahnscO.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 rtc.cpp
+     /tmp/ccahnscO.s:18     .text._Z8init_rtcv:0000000000000000 $t
+     /tmp/ccahnscO.s:24     .text._Z8init_rtcv:0000000000000000 _Z8init_rtcv
+     /tmp/ccahnscO.s:120    .text._Z8init_rtcv:0000000000000054 $d
+     /tmp/ccahnscO.s:125    .text._Z7get_rtcP15RTC_DateTypeDefP15RTC_TimeTypeDef:0000000000000000 $t
+     /tmp/ccahnscO.s:131    .text._Z7get_rtcP15RTC_DateTypeDefP15RTC_TimeTypeDef:0000000000000000 _Z7get_rtcP15RTC_DateTypeDefP15RTC_TimeTypeDef
+     /tmp/ccahnscO.s:171    .text._Z7get_rtcP15RTC_DateTypeDefP15RTC_TimeTypeDef:000000000000001c $d
+     /tmp/ccahnscO.s:176    .text._Z7set_rtcP15RTC_DateTypeDefP15RTC_TimeTypeDef:0000000000000000 $t
+     /tmp/ccahnscO.s:182    .text._Z7set_rtcP15RTC_DateTypeDefP15RTC_TimeTypeDef:0000000000000000 _Z7set_rtcP15RTC_DateTypeDefP15RTC_TimeTypeDef
+     /tmp/ccahnscO.s:249    .text._Z7set_rtcP15RTC_DateTypeDefP15RTC_TimeTypeDef:0000000000000038 $d
+
+UNDEFINED SYMBOLS
+HAL_RTC_SetDate
+HAL_RTC_SetTime
+Error_Handler
+hrtc
+HAL_RTC_GetTime
+HAL_RTC_GetDate

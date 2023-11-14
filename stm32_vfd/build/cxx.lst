@@ -1,0 +1,138 @@
+ARM GAS  /tmp/ccRVNRIS.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"cxx.cpp"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text._ZN9__gnu_cxx27__verbose_terminate_handlerEv,"ax",%progbits
+  18              		.align	1
+  19              		.global	_ZN9__gnu_cxx27__verbose_terminate_handlerEv
+  20              		.syntax unified
+  21              		.code	16
+  22              		.thumb_func
+  24              	_ZN9__gnu_cxx27__verbose_terminate_handlerEv:
+  25              	.LFB7:
+  26              		.file 1 "Core/Src/cxx.cpp"
+   1:Core/Src/cxx.cpp **** //
+   2:Core/Src/cxx.cpp **** // This file is part of the µOS++ III distribution.
+   3:Core/Src/cxx.cpp **** // Copyright (c) 2014 Liviu Ionescu.
+   4:Core/Src/cxx.cpp **** //
+   5:Core/Src/cxx.cpp **** 
+   6:Core/Src/cxx.cpp **** // ----------------------------------------------------------------------------
+   7:Core/Src/cxx.cpp **** 
+   8:Core/Src/cxx.cpp **** // These functions are redefined locally, to avoid references to some
+   9:Core/Src/cxx.cpp **** // heavy implementations in the standard C++ library.
+  10:Core/Src/cxx.cpp **** 
+  11:Core/Src/cxx.cpp **** // ----------------------------------------------------------------------------
+  12:Core/Src/cxx.cpp **** 
+  13:Core/Src/cxx.cpp **** #include <cstdlib>
+  14:Core/Src/cxx.cpp **** #include <sys/types.h>
+  15:Core/Src/cxx.cpp **** //#include "diag/Trace.h"
+  16:Core/Src/cxx.cpp **** 
+  17:Core/Src/cxx.cpp **** // ----------------------------------------------------------------------------
+  18:Core/Src/cxx.cpp **** 
+  19:Core/Src/cxx.cpp **** namespace __gnu_cxx
+  20:Core/Src/cxx.cpp **** {
+  21:Core/Src/cxx.cpp ****   void
+  22:Core/Src/cxx.cpp ****   __attribute__((noreturn))
+  23:Core/Src/cxx.cpp ****   __verbose_terminate_handler();
+  24:Core/Src/cxx.cpp **** 
+  25:Core/Src/cxx.cpp ****   void
+  26:Core/Src/cxx.cpp ****   __verbose_terminate_handler()
+  27:Core/Src/cxx.cpp ****   {
+  27              		.loc 1 27 3 view -0
+  28              		.cfi_startproc
+  29              		@ Volatile: function does not return.
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /tmp/ccRVNRIS.s 			page 2
+
+
+  32 0000 10B5     		push	{r4, lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 8
+  35              		.cfi_offset 4, -8
+  36              		.cfi_offset 14, -4
+  28:Core/Src/cxx.cpp ****     //trace_puts(__func__);
+  29:Core/Src/cxx.cpp ****     abort();
+  37              		.loc 1 29 5 view .LVU1
+  38              		.loc 1 29 10 is_stmt 0 view .LVU2
+  39 0002 FFF7FEFF 		bl	abort
+  40              	.LVL0:
+  41              		.cfi_endproc
+  42              	.LFE7:
+  44              		.section	.text.__cxa_pure_virtual,"ax",%progbits
+  45              		.align	1
+  46              		.global	__cxa_pure_virtual
+  47              		.syntax unified
+  48              		.code	16
+  49              		.thumb_func
+  51              	__cxa_pure_virtual:
+  52              	.LFB8:
+  30:Core/Src/cxx.cpp ****   }
+  31:Core/Src/cxx.cpp **** }
+  32:Core/Src/cxx.cpp **** 
+  33:Core/Src/cxx.cpp **** // ----------------------------------------------------------------------------
+  34:Core/Src/cxx.cpp **** 
+  35:Core/Src/cxx.cpp **** extern "C"
+  36:Core/Src/cxx.cpp **** {
+  37:Core/Src/cxx.cpp ****   void
+  38:Core/Src/cxx.cpp ****   __attribute__((noreturn))
+  39:Core/Src/cxx.cpp ****   __cxa_pure_virtual();
+  40:Core/Src/cxx.cpp **** 
+  41:Core/Src/cxx.cpp ****   void
+  42:Core/Src/cxx.cpp ****   __cxa_pure_virtual()
+  43:Core/Src/cxx.cpp ****   {
+  53              		.loc 1 43 3 is_stmt 1 view -0
+  54              		.cfi_startproc
+  55              		@ Volatile: function does not return.
+  56              		@ args = 0, pretend = 0, frame = 0
+  57              		@ frame_needed = 0, uses_anonymous_args = 0
+  58 0000 10B5     		push	{r4, lr}
+  59              	.LCFI1:
+  60              		.cfi_def_cfa_offset 8
+  61              		.cfi_offset 4, -8
+  62              		.cfi_offset 14, -4
+  44:Core/Src/cxx.cpp ****     //trace_puts(__func__);
+  45:Core/Src/cxx.cpp ****     abort();
+  63              		.loc 1 45 5 view .LVU4
+  64              		.loc 1 45 10 is_stmt 0 view .LVU5
+  65 0002 FFF7FEFF 		bl	abort
+  66              	.LVL1:
+  67              		.cfi_endproc
+  68              	.LFE8:
+  70              		.text
+  71              	.Letext0:
+  72              		.file 2 "/home/thomas/programme/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/c++/10.3.1/cs
+  73              		.file 3 "/home/thomas/programme/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/c++/10.3.1/ar
+ARM GAS  /tmp/ccRVNRIS.s 			page 3
+
+
+  74              		.file 4 "/home/thomas/programme/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/includ
+  75              		.file 5 "/home/thomas/programme/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdlib.h"
+  76              		.file 6 "<built-in>"
+ARM GAS  /tmp/ccRVNRIS.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 cxx.cpp
+     /tmp/ccRVNRIS.s:18     .text._ZN9__gnu_cxx27__verbose_terminate_handlerEv:0000000000000000 $t
+     /tmp/ccRVNRIS.s:24     .text._ZN9__gnu_cxx27__verbose_terminate_handlerEv:0000000000000000 _ZN9__gnu_cxx27__verbose_terminate_handlerEv
+     /tmp/ccRVNRIS.s:45     .text.__cxa_pure_virtual:0000000000000000 $t
+     /tmp/ccRVNRIS.s:51     .text.__cxa_pure_virtual:0000000000000000 __cxa_pure_virtual
+
+UNDEFINED SYMBOLS
+abort
