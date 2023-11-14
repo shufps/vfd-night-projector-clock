@@ -18,9 +18,9 @@ So here it is ... 🥳
 
 This image shows a comparison between my old radio clock with projector and the VFD night clock projector:
 
-![image](https://github.com/shufps/vfd-night-projector-clock/assets/3079832/d19576c7-4cfa-4a5a-8980-7dacecd6e32d)
+![Uploading image.png…]()
 
-The brighness is perfect in the night 👌
+The brighness is perfect in the night 👌 
 
 ## Properties
 
