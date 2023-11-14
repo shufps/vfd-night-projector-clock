@@ -20,9 +20,6 @@ This image shows a comparison between my old radio clock with projector and the 
 
 ![image](https://github.com/shufps/vfd-night-projector-clock/assets/3079832/448887c9-fb1b-4cfb-b31c-fcd3ef0189bd)
 
-![image](https://github.com/shufps/vfd-night-projector-clock/assets/3079832/48b94611-c55f-4a7d-9014-ebd896ab367e)
-
-
 The brighness is perfect in the night 👌 
 
 ## Properties
