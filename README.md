@@ -35,7 +35,9 @@ There are some methods how a VFD can be operated. After some prior experience wi
 - the positive gate/segment voltage is +3.3V. You easily can switch the positive gate/segment voltage with BSS84s from a STM32 with no additional parts what is the easiest solution. This gives a total gate / segment voltage of 27.3V
 - AC Filament drive is done with a full-bridge made of a two channel MOSFET driver. The output is AC coupled and pulled to about -22V. Bias is adjustable (even could be used to change the brightness)
 
-![image](https://github.com/shufps/vfd-night-projector-clock/assets/3079832/3951aacf-8164-4a93-aad1-ff78df7fda37)
+![image](https://github.com/shufps/vfd-night-projector-clock/assets/3079832/3ee4af2f-46fb-4d40-b717-108762b51c3f)
+
+
 
 ## STM32 Software
 
