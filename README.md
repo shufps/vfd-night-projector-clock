@@ -41,7 +41,7 @@ There are some methods how a VFD can be operated. After some prior experience wi
 
 ## STM32 Software
 
-The STM32 software currently only supports a json-rpc via USB CDC. Buttons are currently unused 🙈
+The STM32 software currently only supports a json-rpc via USB virtual COM port (CDC). Buttons are currently unused 🙈
 
 There is python code that can 
 
