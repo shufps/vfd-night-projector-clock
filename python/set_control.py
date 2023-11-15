@@ -28,11 +28,11 @@ def main():
     # Record the initial time
     initial_time = now
 
-    state = 0
-    hour_on = 0
-    minute_on = 2
-    hour_off = 0
-    minute_off = 3
+    state = 1
+    hour_on = 20
+    minute_on = 0
+    hour_off = 8
+    minute_off = 0
 
     # Send initial request to set date and time
     initial_request = {
