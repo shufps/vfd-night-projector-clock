@@ -12,9 +12,12 @@ For this reason there are plenty of old lenses (e.g. with M42 threading) out the
 
 Moreover, they have a flange focal distance of 45.46mm which allows to build a relatively compact casing.
 
-![image](https://github.com/shufps/vfd-night-projector-clock/assets/3079832/57ff3927-153c-475b-b000-4556b7a6dd36)
+![image](https://github.com/shufps/vfd-night-projector-clock/assets/3079832/6077442a-a951-40c0-a322-d42cf13f020e)
 
 So here it is ... 🥳
+
+
+
 
 This image shows a comparison between my old radio clock with projector and the VFD night clock projector:
 
