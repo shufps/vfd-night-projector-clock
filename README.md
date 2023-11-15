@@ -22,6 +22,11 @@ This image shows a comparison between my old radio clock with projector and the 
 
 The brighness is perfect in the night 👌 (but ofc barely visible at day)
 
+If everything is adjusted properly, you even can see the grid on the digits:
+
+![image](https://github.com/shufps/vfd-night-projector-clock/assets/3079832/fac6c88d-ac99-44ef-92ff-6fea36e940d9)
+
+
 ## Properties
 
 There are some methods how a VFD can be operated. After some prior experience with VFDs this is one of the easiest methods:
