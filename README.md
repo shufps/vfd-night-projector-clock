@@ -20,7 +20,7 @@ This image shows a comparison between my old radio clock with projector and the 
 
 ![image](https://github.com/shufps/vfd-night-projector-clock/assets/3079832/448887c9-fb1b-4cfb-b31c-fcd3ef0189bd)
 
-The brighness is perfect in the night 👌 
+The brighness is perfect in the night 👌 (but ofc barely visible at day)
 
 ## Properties
 
