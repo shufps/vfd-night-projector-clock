@@ -59,3 +59,37 @@ This are small examples that nicely demonstrate how to use the json-rpc.
 ![image](https://github.com/shufps/vfd-night-projector-clock/assets/3079832/7ccb60f4-8a49-468e-9ba0-ce93a029dc57)
 
 The case was designed in a way that no supports are needed. The upper part is simply clipped on the lower part.
+
+<!--
+Ode to VFD Displays (Chatti4 2023)
+
+Oh, relics of an era long past,<br>
+Vacuum Fluorescent Displays, you hold fast.<br>
+Born in Soviet realms, a technological feast,<br>
+Your glasspunk aesthetics have never ceased.<br>
+
+In your cylindrical tubes, a dance of light,<br>
+A greenish-blue hue, softly bright.<br>
+Your glow, a whisper from history's tide,<br>
+In old devices, you reside with pride.<br>
+
+You are the silent storytellers, bold,<br>
+Of times when technology wasn't so cold.<br>
+Your luminescent charm, a visual delight,<br>
+In the stillness of rooms, you're the night's light.<br>
+
+Through you, numbers and words gracefully flow,<br>
+A retro display, a nostalgic glow.<br>
+Your enduring spirit, a testament to time,<br>
+In the world of screens, you're a verse, a rhyme.<br>
+
+VFD, in your glass cocoon you lay,<br>
+A visual symphony in green and gray.<br>
+A bridge from the past, to the present you lead,<br>
+A piece of history, in every glowing bead.<br>
+
+In the march of progress, you're a quiet ode,<br>
+A reminder of a less digital road.<br>
+VFD displays, in you, the past does reside,<br>
+A beautiful, forgotten technological stride.<br>
+-->
